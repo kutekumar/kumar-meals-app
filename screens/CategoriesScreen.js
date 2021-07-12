@@ -18,6 +18,7 @@ const CategoriesScreen = (props) => {
       <CategoryGridTile
         title={itemData.item.title}
         color={itemData.item.color}
+        icon={itemData.item.icon}
         onSelect={() => {
           props.navigation.navigate({
             routeName: "CategoryMeals",

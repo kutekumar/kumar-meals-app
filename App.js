@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, SafeAreaView } from "react-native";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 import { enableScreens } from "react-native-screens";
@@ -28,7 +28,15 @@ export default function App() {
     );
   }
 
-  return <MealsNavigator />;
+  return (
+    <SafeAreaView style={styles.screen}>
+      <MealsNavigator />
+    </SafeAreaView>
+  );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+  },
+});

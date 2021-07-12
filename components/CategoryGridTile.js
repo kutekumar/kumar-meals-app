@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableNativeFeedback,
   Platform,
+  Image,
 } from "react-native";
 
 const CategoryGridTile = (props) => {
@@ -19,6 +20,8 @@ const CategoryGridTile = (props) => {
       <TouchableCmp style={{ flex: 1 }} onPress={props.onSelect}>
         <View
           style={{ ...styles.container, ...{ backgroundColor: props.color } }}>
+          <Image source={{ uri: props.icon }} style={styles.bgImage} />
+
           <Text style={styles.title} numberOfLines={2}>
             {props.title}
           </Text>
@@ -47,7 +50,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 10,
-
+    overflow: "hidden",
     padding: 10,
     justifyContent: "flex-end",
     alignItems: "flex-end",
@@ -55,8 +58,16 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: "open-sans-bold",
     color: "white",
-    fontSize: 20,
+    fontSize: 18,
     textAlign: "right",
+  },
+  bgImage: {
+    width: "75%",
+    height: "75%",
+    borderRadius: 120,
+    borderColor: "white",
+    borderWidth: 2,
+    marginRight: 15,
   },
 });
 
