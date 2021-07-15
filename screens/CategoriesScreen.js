@@ -1,12 +1,6 @@
 import { FONT_SANS_16_WHITE } from "jimp";
 import React from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { FlatList, StyleSheet, TouchableOpacity } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CategoryGridTile from "../components/CategoryGridTile";
 import CustomHeaderButton from "../components/HeaderButton";

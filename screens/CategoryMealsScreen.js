@@ -1,16 +1,29 @@
 import React from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { useSelector } from "react-redux";
+import DefaultText from "../components/DefaultText";
+
 import MealList from "../components/MealList";
-import { CATEGORIES, MEALS } from "../data/dummy-data";
+import { CATEGORIES } from "../data/dummy-data";
 
 const CategoryMealsScreen = (props) => {
   const catId = props.navigation.getParam("categoryId");
 
-  const displayedMeals = MEALS.filter(
+  const availableMeals = useSelector((state) => state.meals.filteredMeals);
+
+  const displayedMeals = availableMeals.filter(
     (meal) => meal.categoryIds.indexOf(catId) >= 0
   );
 
-  return <MealList listData={displayedMeals} navigation={props.navigation} />;
+  if (displayedMeals.length === 0) {
+    return (
+      <View style={styles.screen}>
+        <DefaultText>No meals found, please check your filters!</DefaultText>
+      </View>
+    );
+  } else {
+    return <MealList listData={displayedMeals} navigation={props.navigation} />;
+  }
 };
 
 CategoryMealsScreen.navigationOptions = (navigationData) => {
@@ -22,6 +35,13 @@ CategoryMealsScreen.navigationOptions = (navigationData) => {
     headerTitle: selectedCategory.title,
   };
 };
-const styles = StyleSheet.create({});
+
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 
 export default CategoryMealsScreen;
